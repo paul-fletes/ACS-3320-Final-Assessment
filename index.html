@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Color.com</title>
+  <style>
+    .swatch {
+      width: 100px;
+      height: 100px;
+      margin: 0.25em;
+      border: 1px solid #ccc;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    main {
+      width: 600px;
+      margin: auto;
+    }
+
+    .min-height {
+      min-height: 100vh;
+    }
+
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    #banner {
+      height: 100px;
+    }
+
+    #popular {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      padding-bottom: 10px;
+    }
+
+
+    .card {
+      flex: 1;
+      width: 300px;
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-color: darkseagreen;
+      color: #D9ED92;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 4px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 15px;
+    }
+  </style>
+  <link rel="stylesheet" href="limelook.css">
+</head>
+
+<body>
+
+  <!-- Base Styles - Set the base styles for the page -->
+
+  <main>
+
+    <!-- navbar - Style the navbar -->
+    <section id="nav">
+      <header>
+        <nav class="navbar">
+          <a href="#">Color.com</a>
+          <a href="#about">About</a>
+          <a href="#popular">Popular</a>
+          <a href="#swatches">Swatches</a>
+          <a href="#cart">Order</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+    </section>
+
+    <!-- banner -->
+    <section id="banner" class="min-height">
+      <ticker-tape>
+        <h1>...Color.com is awesome...</h1>
+      </ticker-tape>
+    </section>
+
+
+    <!-- section about - -->
+    <section id="about">
+      <header>
+        <h1>What is color?</h1>
+      </header>
+      <p><strong>Color</strong> (American English), or colour (Commonwealth
+        English), is the characteristic of visual perception described through
+        color categories, with names such as red, orange, yellow, green, blue,
+        or purple. This perception of color derives from the stimulation of
+        photoreceptor cells (in particular cone cells in the human eye and other
+        vertebrate eyes) by electromagnetic radiation (in the visible spectrum
+        in the case of humans).</p>
+      <p>Color is really important for making great <abbr
+          title="Cascading Style Sheets">CSS</abbr> styles. <a
+          href="#">Color.com is the most amazing place to get your colors.</a>
+      </p>
+    </section>
+
+
+
+    <!-- Section Color Cards - This section contains three cards Style these -->
+    <section id="popular">
+      <div class="card">
+        <img src="images/600px-64_365_Color_Macro.jpg">
+        <p>Colored Pencils</p>
+      </div>
+
+      <div class="card">
+        <img src="images/600px-Nasir-al_molk.jpg">
+        <p>Color effect—sunlight shining through stained glass onto carpet
+          (Nasir ol Molk Mosque located in Shiraz, Iran)</p>
+      </div>
+
+      <div class="card">
+        <img src="images/600px-Chubb_Illusion.png">
+        <p>Colors can appear different depending on their surrounding colors and
+          shapes. The two small squares have exactly the same color, but the
+          right one looks slightly darker, the Chubb illusion.</p>
+      </div>
+    </section>
+
+
+
+    <!-- Section Color Swatches - This section contains -->
+    <section id="swatches">
+      <header>
+        <h1>Colors</h1>
+        <p>At color.com we offer a range of high quality colors.</p>
+      </header>
+      <div class="swatches">
+        <!-- div.swatch -->
+      </div>
+    </section>
+
+    <section id="cart">
+      <header>
+        <h1>Cart</h1>
+      </header>
+
+      <ul id="items">
+        <!-- Items here -->
+      </ul>
+
+      <div id="total">
+        <!-- Total here -->
+      </div>
+    </section>
+
+
+
+    <!-- Contact form -->
+    <section id="contact" class="min-height">
+      <header>
+        <h1>Contact</h1>
+      </header>
+      <div>
+        <form>
+          <label>
+            name
+            <input type="text">
+          </label>
+
+          <label>
+            Subject
+            <input type="text">
+          </label>
+
+          <label>
+            Message
+            <textarea></textarea>
+          </label>
+
+          <label>
+            Sign up for the newsletter
+            <input type="checkbox">
+          </label>
+
+          <label>
+            <input type="radio" name="user">
+            Artist
+          </label>
+
+          <label>
+            <input type="radio" name="user">
+            Designer
+          </label>
+
+          <label>
+            <input type="radio" name="user">
+            Enthusiast
+          </label>
+          <button>Submit</button>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <section id="footer">
+      <footer>
+        <ul>
+
+        </ul>
+      </footer>
+    </section>
+
+  </main>
+
+  <script>
+
+
+    // All 100 color swatches has a CSS custom property assigne to it. 
+    // You can use this color each swatch with a unique color. 
+
+    // --color-sample-0 : red
+    // --color-sample-1 : green
+    // ...
+    // --color-sample-99 : blue
+
+    // make some swatches 
+
+    function makeColor(index) {
+      const hue = (index * 2) % 360;
+      return `hsl(${hue}, 100%, 50%)`
+    }
+
+    const swatchCount = 100
+    for (let i = 0; i < swatchCount; i += 1) {
+      const swatch = document.createElement('div');
+      swatch.className = `swatch add-to-cart color-${i}`;
+      swatch.dataset.color = `Color ${i}`;
+      swatch.dataset.price = (Math.random() * 10).toFixed(2);
+      swatch.style.backgroundColor = makeColor(i);
+      document.querySelector('.swatches').appendChild(swatch);
+    }
+
+    const addForm = document.getElementById('add-form')
+    const inputName = document.getElementById('name')
+    const inputPrice = document.getElementById('price')
+    const itemsList = document.getElementById('items')
+    const divTotal = document.getElementById('total')
+
+    function handleClicks(e) {
+      if (e.target.matches('.swatch')) {
+        const color = e.target.dataset.color
+        const price = e.target.dataset.price
+        addToCart(color, price)
+      }
+    }
+
+    document.querySelector('body').addEventListener('click', handleClicks)
+
+    const cart = []
+
+    document.querySelector('body').addEventListener('submit', function (e) {
+      e.preventDefault()
+      const name = inputName.value
+      const price = inputPrice.value
+      addToCart(name, price)
+      showCart()
+    })
+
+    document.querySelector('body').addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('remove')) {
+        console.log(e.target.dataset.name)
+        removeFromCart(e.target.dataset.name)
+      } else if (e.target && e.target.classList.contains('add-one')) {
+        addToCart(e.target.dataset.name)
+      } else if (e.target && e.target.classList.contains('remove-one')) {
+        removeFromCart(e.target.dataset.name, 1)
+      }
+    })
+
+    document.querySelector('body').addEventListener('input', function (e) {
+      if (e.target.matches('.update')) {
+        const qty = parseInt(e.target.value)
+        const name = e.target.dataset.name
+        updateCart(name, qty)
+      }
+    })
+
+    function addToCart(name, price) {
+      for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+          cart[i].qty += 1
+          showCart()
+          return true
+        }
+      }
+      cart.push({ name, price, qty: 1 })
+      showCart()
+    }
+
+    function removeFromCart(name, qty = 0) {
+      console.log(name, qty)
+      for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+          if (qty) {
+            let newQty = cart[i].qty - qty
+            if (newQty > 0) {
+              cart[i].qty = newQty
+            } else {
+              cart.splice(i, 1)
+            }
+          } else {
+            cart.splice(i, 1)
+          }
+        }
+      }
+
+      showCart()
+    }
+
+    function showCart() {
+      let str = ''
+      for (let i = 0; i < cart.length; i += 1) {
+        // Shopping cart list item! 
+        str += `<li>
+            <span>
+							<span>${cart[i].name}</span>
+							<span>$${cart[i].price}</span> 
+							<span>each x</span>
+							<span>${cart[i].qty}</span> 
+							<span> = </span>  
+							<span>$${(cart[i].qty * cart[i].price).toFixed(2)}</span>
+						</span>
+            
+						<span>
+							<input class="update" data-name="${cart[i].name}" type="number" value="${cart[i].qty}">
+							<button class="add-one" data-name="${cart[i].name}"> + </button>
+							<button class="remove-one" data-name="${cart[i].name}"> - </button>
+							<button class="remove" data-name="${cart[i].name}">remove</button>
+						</span>
+          </li>`
+      }
+      itemsList.innerHTML = str
+      divTotal.innerHTML = getTotal()
+    }
+
+    function getTotal() {
+      let total = 0
+      for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+      }
+      return `Your total is: $${total.toFixed(2)}`
+    }
+
+    function updateCart(name, qty) {
+      for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+          cart[i].qty = qty
+          showCart()
+          return true
+        }
+      }
+      return false
+    }
+
+    showCart()
+    getTotal()
+
+    // TickerTape web component
+    class TickerTape extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+        const template = document.createElement("template");
+        template.innerHTML = `
+      <style>
+        .ticker-container {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+          white-space: nowrap;
+          overflow: hidden;
+					width: 100%;
+					font-size: 5rem;
+          height: 100px;
+        }
+      </style>
+      <div class="ticker-container"></div>
+    `;
+        const shadowRoot = this.shadowRoot;
+        shadowRoot.appendChild(template.content.cloneNode(true));
+
+        this.text = "";
+        this.currentIndex = 0;
+        this.animationSpeed = 200;
+        this.startTicker();
+      }
+
+      set textContent(newText) {
+        this.text = newText;
+        this.currentIndex = 0;
+        this.updateTicker();
+      }
+
+      updateTicker() {
+        const tickerContainer =
+          this.shadowRoot.querySelector(".ticker-container");
+        tickerContainer.textContent =
+          this.text.substring(this.currentIndex) +
+          this.text.substring(0, this.currentIndex);
+        this.currentIndex = (this.currentIndex + 1) % this.text.length;
+      }
+
+      startTicker() {
+        setInterval(() => {
+          this.updateTicker();
+        }, this.animationSpeed);
+      }
+    }
+
+    customElements.define("ticker-tape", TickerTape);
+
+    const tickerTape = document.querySelector("ticker-tape");
+    tickerTape.textContent = "...Color.com is awesome...";
+  </script>
+
+</body>
+
+</html>
